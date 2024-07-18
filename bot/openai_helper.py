@@ -651,7 +651,10 @@ class OpenAIHelper:
         """
         model = self.config['model']
         try:
-            encoding = tiktoken.encoding_for_model(model)
+            if (model == "gpt-4o-mini"):
+                encoding = tiktoken.encoding_for_model("gpt-4o")
+            else:
+                encoding = tiktoken.encoding_for_model(model)
         except KeyError:
             encoding = tiktoken.get_encoding("gpt-3.5-turbo")
 
